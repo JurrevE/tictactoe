@@ -1,4 +1,5 @@
 //ALLE FUNCTIONALITEIT VAN DIT PROJECT ZOU MOETEN PASSEN IN OF; PLAYER, GAMEBOARD OF GAME OBJECT!!!!
+//Gameboard functionality!
 const GameBoard = (function GameBoard() {
     const rows = 3;
     const columns = 3;
@@ -18,38 +19,44 @@ const GameBoard = (function GameBoard() {
         board: board
     }
 
-})();
+})(); console.log(GameBoard.board)
 
 function Cell(value) {
     return value
 }
 
-function createPlayer(name, marker) {
-    return {
-        name: name,
-        marker: marker
+//player functionality
+const player = {
+    createPlayer: function (name, marker) {
+        return {
+            name: name,
+            marker: marker
+        }
     }
 }
+
+//Game functionality
 const game = {
     pushO: function (rows, columns) {
         if (GameBoard.board[rows][columns] == "O" || GameBoard.board[rows][columns] == "X") {
-            console.log("kan niet kanker nerd")
+            console.log("Cell already occupied, please choose another.")
         } else {
             GameBoard.board[rows][columns] = "O"
             console.log(GameBoard.board)
         }
     },
-    
+
     pushX: function (rows, columns) {
         if (GameBoard.board[rows][columns] == "O" || GameBoard.board[rows][columns] == "X") {
-            console.log("kan niet kanker nerd")
+            console.log("Cell already occupied, please choose another.")
         } else {
             GameBoard.board[rows][columns] = "X"
             console.log(GameBoard.board)
         }
     }
+
+
+
+
+
 }
-
-
-
-
