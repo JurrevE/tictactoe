@@ -3,27 +3,19 @@
 const GameBoard = (function GameBoard() {
     const rows = 3;
     const columns = 3;
-    const board = [];
-
-    let counter = 1;
+    const board = [[
+    ]];
 
     for (let i = 0; i < rows; i++) {
         board[i] = [];
         for (let j = 0; j < columns; j++) {
-            board[i].push(Cell(counter));
-            counter++
+            board[i].push("");
         }
-
     }
     return {
         board: board
     }
-
 })(); console.log(GameBoard.board)
-
-function Cell(value) {
-    return value
-}
 
 //player functionality
 const player = {
@@ -35,7 +27,6 @@ const player = {
     }
 }
 
-
 //Game functionality
 const game = {
     pushO: function (rows, columns) {
@@ -45,21 +36,68 @@ const game = {
             GameBoard.board[rows][columns] = "O"
             console.log(GameBoard.board)
         }
+        game.checkWin()
     },
 
     pushX: function (rows, columns) {
         if (GameBoard.board[rows][columns] == "O" || GameBoard.board[rows][columns] == "X") {
             console.log("Cell already occupied, please choose another.")
         } else {
-            let currentValue = "X"
-            currentValue = currentValue === "X" ? "O" : "X"
-            GameBoard.board[rows][columns] = currentValue
+            GameBoard.board[rows][columns] = "X"
             console.log(GameBoard.board)
-            }
         }
+        game.checkWin()
+        
+    }, 
+
+    checkWin: function () {
+        const board = GameBoard.board
+        const markers = ["X", "O"]
+        for (let marker of markers) {
+            switch (true) {
+                case //rows
+                (board[0][0] === marker && board[0][1] === marker && board[0][2] === marker) || 
+                (board[1][0] === marker && board[1][1] === marker && board[1][2] === marker) ||
+                (board[2][0] === marker && board[2][1] === marker && board[2][2] === marker):
+                    console.log(`Marker: ${marker} is the Winner`);
+                    return true;
+
+                case //columns
+                (board[0][0] === marker && board[1][0] === marker && board[2][0] === marker) || 
+                (board[0][1] === marker && board[1][1] === marker && board[2][1] === marker) ||
+                (board[0][2] === marker && board[1][2] === marker && board[2][2] === marker):      
+                    console.log(`Marker: ${marker} is the Winner`);
+                    return true;
+
+                case //diagonals
+                (board[0][0] === marker && board[1][1] === marker && board[2][2] === marker) || 
+                (board[2][0] === marker && board[1][1] === marker && board[0][2] === marker):
+                    console.log(`Marker: ${marker} is the Winner`);
+                    return true;
+                }
+            }
+    return false;
     }
-
-    
     
 
 
+
+
+
+
+
+
+
+}
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
