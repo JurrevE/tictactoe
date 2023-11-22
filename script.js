@@ -55,30 +55,39 @@ const game = {
         const markers = ["X", "O"]
         for (let marker of markers) {
             switch (true) {
-                case 
+                case //rows
                 (board[0][0] === marker && board[0][1] === marker && board[0][2] === marker) || 
                 (board[1][0] === marker && board[1][1] === marker && board[1][2] === marker) ||
                 (board[2][0] === marker && board[2][1] === marker && board[2][2] === marker):
-                    console.log("Winner");
+                    console.log(`Marker: ${marker} is the Winner`);
                     return true;
 
-                case 
+                case //columns
                 (board[0][0] === marker && board[1][0] === marker && board[2][0] === marker) || 
                 (board[0][1] === marker && board[1][1] === marker && board[2][1] === marker) ||
                 (board[0][2] === marker && board[1][2] === marker && board[2][2] === marker):      
-                    console.log("winner") 
+                    console.log(`Marker: ${marker} is the Winner`);
                     return true;
 
-                case 
+                case //diagonals
                 (board[0][0] === marker && board[1][1] === marker && board[2][2] === marker) || 
                 (board[2][0] === marker && board[1][1] === marker && board[0][2] === marker):
-                    console.log("winner")
+                    console.log(`Marker: ${marker} is the Winner`);
                     return true;
                 }
             }
     return false;
     }
     
+
+
+
+
+
+
+
+
+
 }
 
     
