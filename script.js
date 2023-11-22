@@ -35,6 +35,7 @@ const player = {
     }
 }
 
+
 //Game functionality
 const game = {
     pushO: function (rows, columns) {
@@ -50,13 +51,15 @@ const game = {
         if (GameBoard.board[rows][columns] == "O" || GameBoard.board[rows][columns] == "X") {
             console.log("Cell already occupied, please choose another.")
         } else {
-            GameBoard.board[rows][columns] = "X"
+            let currentValue = "X"
+            currentValue = currentValue === "X" ? "O" : "X"
+            GameBoard.board[rows][columns] = currentValue
             console.log(GameBoard.board)
+            }
         }
     }
 
+    
+    
 
 
-
-
-}
