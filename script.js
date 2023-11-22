@@ -3,27 +3,19 @@
 const GameBoard = (function GameBoard() {
     const rows = 3;
     const columns = 3;
-    const board = [];
-
-    let counter = 1;
+    const board = [[
+    ]];
 
     for (let i = 0; i < rows; i++) {
         board[i] = [];
         for (let j = 0; j < columns; j++) {
-            board[i].push(Cell(counter));
-            counter++
+            board[i].push("");
         }
-
     }
     return {
         board: board
     }
-
 })(); console.log(GameBoard.board)
-
-function Cell(value) {
-    return value
-}
 
 //player functionality
 const player = {
@@ -53,10 +45,33 @@ const game = {
             GameBoard.board[rows][columns] = "X"
             console.log(GameBoard.board)
         }
+    },
+
+    checkWin: function () {
+        const board = GameBoard.board
+        const markers = ["X", "O"]
+        for (let marker of markers) {
+            switch (true) {
+                case(board[0][0] === marker && board[0][1] === marker && board[0][2] === marker):
+                    console.log("Winner")
+                }
+            }
     }
-
-
-
-
-
 }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+
+
+
