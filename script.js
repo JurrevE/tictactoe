@@ -36,6 +36,7 @@ const game = {
             GameBoard.board[rows][columns] = "O"
             console.log(GameBoard.board)
         }
+        game.checkWin()
     },
 
     pushX: function (rows, columns) {
@@ -45,18 +46,39 @@ const game = {
             GameBoard.board[rows][columns] = "X"
             console.log(GameBoard.board)
         }
-    },
+        game.checkWin()
+        
+    }, 
 
     checkWin: function () {
         const board = GameBoard.board
         const markers = ["X", "O"]
         for (let marker of markers) {
             switch (true) {
-                case(board[0][0] === marker && board[0][1] === marker && board[0][2] === marker):
-                    console.log("Winner")
+                case 
+                (board[0][0] === marker && board[0][1] === marker && board[0][2] === marker) || 
+                (board[1][0] === marker && board[1][1] === marker && board[1][2] === marker) ||
+                (board[2][0] === marker && board[2][1] === marker && board[2][2] === marker):
+                    console.log("Winner");
+                    return true;
+
+                case 
+                (board[0][0] === marker && board[1][0] === marker && board[2][0] === marker) || 
+                (board[0][1] === marker && board[1][1] === marker && board[2][1] === marker) ||
+                (board[0][2] === marker && board[1][2] === marker && board[2][2] === marker):      
+                    console.log("winner") 
+                    return true;
+
+                case 
+                (board[0][0] === marker && board[1][1] === marker && board[2][2] === marker) || 
+                (board[2][0] === marker && board[1][1] === marker && board[0][2] === marker):
+                    console.log("winner")
+                    return true;
                 }
             }
+    return false;
     }
+    
 }
 
     
