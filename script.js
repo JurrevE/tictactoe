@@ -26,6 +26,8 @@ const player = {
         }
     }
 }
+let player1 = player.createPlayer("Jurre", "X")
+let player2 = player.createPlayer("Atsi", "O")
 
 //Game functionality
 const game = {
@@ -35,6 +37,7 @@ const game = {
         } else {
             GameBoard.board[rows][columns] = "O"
             console.log(GameBoard.board)
+            switchPlayerTurn()
         }
         game.checkWin()
     },
@@ -45,11 +48,11 @@ const game = {
         } else {
             GameBoard.board[rows][columns] = "X"
             console.log(GameBoard.board)
+            switchPlayerTurn()
         }
         game.checkWin()
         
-    }, 
-
+    },
     checkWin: function () {
         const board = GameBoard.board
         const markers = ["X", "O"]
@@ -79,23 +82,30 @@ const game = {
     return false;
     }
     
-
-
-
-
-
-
-
-
-
 }
 
+
+
+function GameController() {
+    
+    const players = [player1, player2]
+    console.log(players)
+
+    let activeplayer = players[0]
+
+    const switchPlayerTurn = () => {
+        activeplayer = activeplayer === players[0] ? players[1] : players[0];
+        console.log(`${activeplayer.name} is now the active player after switching`)
+        
+    } 
+    switchPlayerTurn()
+    //switchPlayerTurn()
+    
+}
     
     
     
-    
-    
-    
+
     
     
     
