@@ -51,7 +51,7 @@ const game = {
             switchPlayerTurn()
         }
         game.checkWin()
-        
+
     },
     checkWin: function () {
         const board = GameBoard.board
@@ -59,55 +59,54 @@ const game = {
         for (let marker of markers) {
             switch (true) {
                 case //rows
-                (board[0][0] === marker && board[0][1] === marker && board[0][2] === marker) || 
-                (board[1][0] === marker && board[1][1] === marker && board[1][2] === marker) ||
-                (board[2][0] === marker && board[2][1] === marker && board[2][2] === marker):
+                    (board[0][0] === marker && board[0][1] === marker && board[0][2] === marker) ||
+                    (board[1][0] === marker && board[1][1] === marker && board[1][2] === marker) ||
+                    (board[2][0] === marker && board[2][1] === marker && board[2][2] === marker):
                     console.log(`Marker: ${marker} is the Winner`);
                     return true;
 
                 case //columns
-                (board[0][0] === marker && board[1][0] === marker && board[2][0] === marker) || 
-                (board[0][1] === marker && board[1][1] === marker && board[2][1] === marker) ||
-                (board[0][2] === marker && board[1][2] === marker && board[2][2] === marker):      
+                    (board[0][0] === marker && board[1][0] === marker && board[2][0] === marker) ||
+                    (board[0][1] === marker && board[1][1] === marker && board[2][1] === marker) ||
+                    (board[0][2] === marker && board[1][2] === marker && board[2][2] === marker):
                     console.log(`Marker: ${marker} is the Winner`);
                     return true;
 
                 case //diagonals
-                (board[0][0] === marker && board[1][1] === marker && board[2][2] === marker) || 
-                (board[2][0] === marker && board[1][1] === marker && board[0][2] === marker):
+                    (board[0][0] === marker && board[1][1] === marker && board[2][2] === marker) ||
+                    (board[2][0] === marker && board[1][1] === marker && board[0][2] === marker):
                     console.log(`Marker: ${marker} is the Winner`);
                     return true;
-                }
             }
-    return false;
-    }
+        }
+        return false;
+    },
+
     
-}
+    Gamecontroller: function () {
+        const players = [player1, player2]
+        console.log(players)
 
+        let activeplayer = players[0]
 
-
-function GameController() {
-    
-    const players = [player1, player2]
-    console.log(players)
-
-    let activeplayer = players[0]
-
-    const switchPlayerTurn = () => {
-        activeplayer = activeplayer === players[0] ? players[1] : players[0];
-        console.log(`${activeplayer.name} is now the active player after switching`)
+        const switchPlayerTurn = () => {
+            activeplayer = activeplayer === players[0] ? players[1] : players[0];
+            console.log(`${activeplayer.name} is now the active player after switching`)
+        }
+        switchPlayerTurn()
         
-    } 
-    switchPlayerTurn()
-    //switchPlayerTurn()
-    
-}
-    
-    
-    
+    }
 
-    
-    
-    
-    
-    
+}
+
+
+
+
+
+
+
+
+
+
+
+
