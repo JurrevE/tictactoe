@@ -1,58 +1,78 @@
-//ALLE FUNCTIONALITEIT VAN DIT PROJECT ZOU MOETEN PASSEN IN OF; PLAYER, GAMEBOARD OF GAME OBJECT!!!!
-//Gameboard functionality!
 const GameBoard = (function GameBoard() {
-    const rows = 3;
-    const columns = 3;
-    const board = [[
-    ]];
-
-    for (let i = 0; i < rows; i++) {
-        board[i] = [];
-        for (let j = 0; j < columns; j++) {
-            board[i].push("");
-        }
-    }
+    const board = [
+        ["0,0", "0,1", "0,2"],
+        ["1,0", "1,1", "1,2"],
+        ["2,0", "2,1", "2,2"]
+    ]
+    console.log(board)
     return {
-        board: board
-    }
-})(); console.log(GameBoard.board)
-
-//player functionality
-const player = {
-    createPlayer: function (name, marker) {
-        return {
-            name: name,
-            marker: marker
+        getBoard: function () {
+            return board;
         }
     }
+})()
+
+const players = {
+    createPlayers: function () {
+        const allowedMarkers = ["X", "O"]
+        let player1 = {}
+        let player2 = {}
+        let player1marker;
+        let player1name = prompt("Please enter your name", "player1")
+        console.log(`player 1's name is: ${player1name}`)
+        while (true) {
+            player1marker = prompt("Please enter a marker, either: X or O", "X")
+            if (allowedMarkers.includes(player1marker)) {
+                break
+            }
+            else {
+                alert("invalid marker! Choose between either X or O")
+            }
+        }
+        console.log(`${player1name} Chose to play as: ${player1marker}`)
+        const player2name = prompt("Please enter your name", "player2")
+        console.log(`player 2's name is: ${player2name}`)
+        const player2marker = player1marker === "X" ? "O" : "X";
+        console.log(`${player2name} chose to play as: ${player2marker}`);
+
+        player1 = {
+            name: player1name,
+            marker: player1marker
+        },
+
+        player2 = {
+            name: player2name,
+            marker: player2marker
+        },
+        getPlayerMarkersFromInside: function() {}
+        return playermarkers = [player1marker, player2marker]
+    }
+    
 }
-let player1 = player.createPlayer("Jurre", "X")
-let player2 = player.createPlayer("Atsi", "O")
 
-//Game functionality
 const game = {
-    pushO: function (rows, columns) {
-        if (GameBoard.board[rows][columns] == "O" || GameBoard.board[rows][columns] == "X") {
-            console.log("Cell already occupied, please choose another.")
-        } else {
-            GameBoard.board[rows][columns] = "O"
-            console.log(GameBoard.board)
-            switchPlayerTurn()
-        }
-        game.checkWin()
+    pushMarker: function (rows, columns, playermarkers) {
+        let board = GameBoard.getBoard
+
+
+        
     },
 
-    pushX: function (rows, columns) {
-        if (GameBoard.board[rows][columns] == "O" || GameBoard.board[rows][columns] == "X") {
-            console.log("Cell already occupied, please choose another.")
-        } else {
-            GameBoard.board[rows][columns] = "X"
-            console.log(GameBoard.board)
-            switchPlayerTurn()
-        }
-        game.checkWin()
 
-    },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     checkWin: function () {
         const board = GameBoard.board
         const markers = ["X", "O"]
@@ -82,31 +102,4 @@ const game = {
         return false;
     },
 
-    
-    Gamecontroller: function () {
-        const players = [player1, player2]
-        console.log(players)
-
-        let activeplayer = players[0]
-
-        const switchPlayerTurn = () => {
-            activeplayer = activeplayer === players[0] ? players[1] : players[0];
-            console.log(`${activeplayer.name} is now the active player after switching`)
-        }
-        switchPlayerTurn()
-        
-    }
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
