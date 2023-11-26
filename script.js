@@ -40,41 +40,63 @@ const players = {
             marker: player1marker
         },
 
-        player2 = {
-            name: player2name,
-            marker: player2marker
-        },
-        getPlayerMarkersFromInside: function() {}
+            player2 = {
+                name: player2name,
+                marker: player2marker
+            },
+
+            getPlayerMarkersFromInside = function () { }
         return playermarkers = [player1marker, player2marker]
     }
-    
+
 }
 
 const game = {
-    pushMarker: function (rows, columns, playermarkers) {
-        let board = GameBoard.getBoard
+    board: GameBoard,
 
-
-        
+    getGameBoard: function () {
+        return this.board.getBoard();
     },
 
+    pushMarker: function () {
+        const allowedspots = [0, 1, 2];
+        const board = this.board.getBoard();
 
+        let rowschoice, columnschoice;
 
+        while (true) {
+            rowschoice = parseInt(prompt("Please choose a number between (0-2) for the rows"));
+            if (allowedspots.includes(rowschoice)) {
+                break;
+            } else {
+                alert("PLEASE CHOOSE NUMBERS FROM 0-2");
+            }
+        }
 
+        while (true) {
+            columnschoice = parseInt(prompt("Please choose a number between (0-2) for the columns"));
+            if (allowedspots.includes(columnschoice)) {
+                break;
+            } else {
+                alert("PLEASE CHOOSE NUMBERS FROM 0-2");
+            }
+        }
 
+        let activeplayer = playermarkers[0];
+        console.log(activeplayer);
 
-
-
-
-
-
-
-
-
-
+        if (board[rowschoice][columnschoice] === "O" || board[rowschoice][columnschoice] === "X") {
+            console.log("kan niet kanker nerd")
+        } else {
+            board[rowschoice][columnschoice] = activeplayer
+            console.log(board)
+        }
+        
+        this.playerswitcher();
+    },
 
     checkWin: function () {
-        const board = GameBoard.board
+        const board = this.board.getBoard();
         const markers = ["X", "O"]
         for (let marker of markers) {
             switch (true) {
@@ -102,4 +124,40 @@ const game = {
         return false;
     },
 
+    playerswitcher: function () {
+        playermarkers.push(playermarkers.shift());
+    }
+
 }
+
+let playgame = function () {
+    players.createPlayers();
+
+    let isGameOver = false; // Flag to track the game state
+
+    const playNextMove = () => {
+        if (!isGameOver) {
+            game.pushMarker(); // Prompt the player for a move
+
+            if (game.checkWin()) { // Check if there's a winner
+                if (!isGameOver) {
+                    console.log('Game Over!'); // Log a message for the end of the game only once
+                    isGameOver = true; // Set the flag to true to indicate the game has ended
+                    GameBoard.board = [
+                        ["0,0", "0,1", "0,2"],
+                        ["1,0", "1,1", "1,2"],
+                        ["2,0", "2,1", "2,2"]
+                    ]
+                }
+            } else {
+                setTimeout(playNextMove, 4000); // Schedule the next move after 6 seconds
+            }
+        }
+    };
+
+    // Start the game by scheduling the first move
+    playNextMove();
+};
+
+
+
