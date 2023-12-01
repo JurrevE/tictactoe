@@ -150,14 +150,13 @@ let playgame = function () {
                     ]
                 }
             } else {
-                setTimeout(playNextMove, 4000); // Schedule the next move after 6 seconds
-            }
+                setTimeout(playNextMove, 4000); 
         }
     };
 
-    // Start the game by scheduling the first move
+    
     playNextMove();
 };
 
-
+}
 

@@ -1,0 +1,43 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: solid black 1px;
+    
+}
+
+body {
+    height: 100vh;
+}
+
+main {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background: linear-gradient(159deg, rgba(57,194,95,1) 0%, rgba(29,123,142,1) 100%);
+
+}
+
+.tictactoeboard {
+    width: 600px;
+    height: 600px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3,1fr);
+}
+
+p {
+    color: white;
+    font-size: 8rem;
+    font-weight: 800;
+}
+
+.fields {
+    background-color: white;
+    
+}
+
+button:hover{
+    background-color: grey;
+}
