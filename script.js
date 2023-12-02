@@ -12,6 +12,7 @@ const GameBoard = (function GameBoard() {
     }
 })()
 
+
 const players = {
     createPlayers: function () {
         const allowedMarkers = ["X", "O"]
@@ -35,36 +36,43 @@ const players = {
         const player2marker = player1marker === "X" ? "O" : "X";
         console.log(`${player2name} chose to play as: ${player2marker}`);
 
+
         player1 = {
             name: player1name,
             marker: player1marker
         },
+
 
             player2 = {
                 name: player2name,
                 marker: player2marker
             },
 
+
             getPlayerMarkersFromInside = function () { }
         return playermarkers = [player1marker, player2marker]
     }
 
+
 }
+
 
 const game = {
     board: GameBoard,
-    
+
 
     getGameBoard: function () {
         return this.board.getBoard();
     },
 
+
     pushMarker: function () {
-        
         const allowedspots = [0, 1, 2];
         const board = this.board.getBoard();
 
+
         let rowschoice, columnschoice;
+
 
         while (true) {
             rowschoice = parseInt(prompt("Please choose a number between (0-2) for the rows"));
@@ -75,6 +83,7 @@ const game = {
             }
         }
 
+
         while (true) {
             columnschoice = parseInt(prompt("Please choose a number between (0-2) for the columns"));
             if (allowedspots.includes(columnschoice)) {
@@ -84,20 +93,22 @@ const game = {
             }
         }
 
+
         let activeplayer = playermarkers[0];
         console.log(activeplayer);
+
 
         if (board[rowschoice][columnschoice] === "O" || board[rowschoice][columnschoice] === "X") {
             console.log("kan niet kanker nerd")
         } else {
             board[rowschoice][columnschoice] = activeplayer
 
-            
+
             console.log(board)
         }
-        
         this.playerswitcher();
     },
+
 
     checkWin: function () {
         const board = this.board.getBoard();
@@ -111,6 +122,7 @@ const game = {
                     console.log(`Marker: ${marker} is the Winner`);
                     return true;
 
+
                 case //columns
                     (board[0][0] === marker && board[1][0] === marker && board[2][0] === marker) ||
                     (board[0][1] === marker && board[1][1] === marker && board[2][1] === marker) ||
@@ -118,22 +130,20 @@ const game = {
                     console.log(`Marker: ${marker} is the Winner`);
                     return true;
 
+
                 case //diagonals
                     (board[0][0] === marker && board[1][1] === marker && board[2][2] === marker) ||
                     (board[2][0] === marker && board[1][1] === marker && board[0][2] === marker):
                     console.log(`Marker: ${marker} is the Winner`);
                     return true;
-                
-                
-                
             }
         }
         return false;
     },
 
-    checkDraw: function() {
+
+    checkDraw: function () {
         const board = this.getGameBoard(); // Use the getGameBoard function to access the board
-    
         for (let i = 0; i < board.length; i++) {
             for (let j = 0; j < board[i].length; j++) {
                 if (board[i][j] !== "X" && board[i][j] !== "O") {
@@ -141,11 +151,11 @@ const game = {
                 }
             }
         }
-    
         return !this.checkWin(); // If there's no winner, it's a draw
     },
 
-    resetBoard: function() {
+
+    resetBoard: function () {
         const board = [
             ["0,0", "0,1", "0,2"],
             ["1,0", "1,1", "1,2"],
@@ -153,22 +163,19 @@ const game = {
         ]
         console.log(board)
     },
-    
-    
+
 
     playerswitcher: function () {
         playermarkers.push(playermarkers.shift());
     },
 
-    playgame: function() {
+
+    playgame: function () {
         players.createPlayers();
-    
         let isGameOver = false;
-    
         const playNextMove = () => {
             if (!isGameOver) {
                 game.pushMarker();
-    
                 if (game.checkWin()) {
                     console.log('Game Over! There is a winner!');
                     isGameOver = true;
@@ -177,18 +184,24 @@ const game = {
                     console.log('Game Over! It\'s a draw!');
                     isGameOver = true;
                     game.resetBoard()
-                    
                 } else {
                     setTimeout(playNextMove, 2000);
                 }
             }
         };
-    
         playNextMove();
     }
-    
+
 
 }
+
+
+
+
+
+
+
+
 
 
 
