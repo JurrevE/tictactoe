@@ -53,12 +53,14 @@ const players = {
 
 const game = {
     board: GameBoard,
+    
 
     getGameBoard: function () {
         return this.board.getBoard();
     },
 
     pushMarker: function () {
+        
         const allowedspots = [0, 1, 2];
         const board = this.board.getBoard();
 
@@ -89,6 +91,8 @@ const game = {
             console.log("kan niet kanker nerd")
         } else {
             board[rowschoice][columnschoice] = activeplayer
+
+            
             console.log(board)
         }
         
@@ -119,45 +123,74 @@ const game = {
                     (board[2][0] === marker && board[1][1] === marker && board[0][2] === marker):
                     console.log(`Marker: ${marker} is the Winner`);
                     return true;
+                
+                
+                
             }
         }
         return false;
     },
 
+    checkDraw: function() {
+        const board = this.getGameBoard(); // Use the getGameBoard function to access the board
+    
+        for (let i = 0; i < board.length; i++) {
+            for (let j = 0; j < board[i].length; j++) {
+                if (board[i][j] !== "X" && board[i][j] !== "O") {
+                    return false; // If any cell is empty, the game is not a draw
+                }
+            }
+        }
+    
+        return !this.checkWin(); // If there's no winner, it's a draw
+    },
+
+    resetBoard: function() {
+        const board = [
+            ["0,0", "0,1", "0,2"],
+            ["1,0", "1,1", "1,2"],
+            ["2,0", "2,1", "2,2"]
+        ]
+        console.log(board)
+    },
+    
+    
+
     playerswitcher: function () {
         playermarkers.push(playermarkers.shift());
+    },
+
+    playgame: function() {
+        players.createPlayers();
+    
+        let isGameOver = false;
+    
+        const playNextMove = () => {
+            if (!isGameOver) {
+                game.pushMarker();
+    
+                if (game.checkWin()) {
+                    console.log('Game Over! There is a winner!');
+                    isGameOver = true;
+                    game.resetBoard()
+                } else if (game.checkDraw()) {
+                    console.log('Game Over! It\'s a draw!');
+                    isGameOver = true;
+                    game.resetBoard()
+                    
+                } else {
+                    setTimeout(playNextMove, 2000);
+                }
+            }
+        };
+    
+        playNextMove();
     }
+    
 
 }
 
-let playgame = function () {
-    players.createPlayers();
 
-    let isGameOver = false; // Flag to track the game state
-
-    const playNextMove = () => {
-        if (!isGameOver) {
-            game.pushMarker(); // Prompt the player for a move
-
-            if (game.checkWin()) { // Check if there's a winner
-                if (!isGameOver) {
-                    console.log('Game Over!'); // Log a message for the end of the game only once
-                    isGameOver = true; // Set the flag to true to indicate the game has ended
-                    GameBoard.board = [
-                        ["0,0", "0,1", "0,2"],
-                        ["1,0", "1,1", "1,2"],
-                        ["2,0", "2,1", "2,2"]
-                    ]
-                }
-            } else {
-                setTimeout(playNextMove, 4000); // Schedule the next move after 6 seconds
-            }
-        }
-    };
-
-    // Start the game by scheduling the first move
-    playNextMove();
-};
 
 
 
