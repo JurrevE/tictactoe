@@ -1,7 +1,7 @@
 * {
     margin: 0;
     padding: 0;
-    border: solid black 1px;
+
     
 }
 
@@ -19,12 +19,13 @@ main {
 
 }
 
-.tictactoeboard {
+#tictactoeboard {
     width: 600px;
     height: 600px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3,1fr);
+    border: solid black 1px;
 }
 
 p {
@@ -33,11 +34,20 @@ p {
     font-weight: 800;
 }
 
-.fields {
+.cell {
     background-color: white;
+    border: solid 1px black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     
 }
 
-button:hover {
-    background-color: grey
+
+.player1marker {
+    background-color: red;
+}
+
+.player2marker {
+    background-color: blue;
 }

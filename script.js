@@ -43,10 +43,10 @@ const players = {
         },
 
 
-            player2 = {
-                name: player2name,
-                marker: player2marker
-            },
+        player2 = {
+            name: player2name,
+            marker: player2marker
+        },
 
 
             getPlayerMarkersFromInside = function () { }
@@ -143,15 +143,15 @@ const game = {
 
 
     checkDraw: function () {
-        const board = this.getGameBoard(); // Use the getGameBoard function to access the board
+        const board = this.getGameBoard(); 
         for (let i = 0; i < board.length; i++) {
             for (let j = 0; j < board[i].length; j++) {
                 if (board[i][j] !== "X" && board[i][j] !== "O") {
-                    return false; // If any cell is empty, the game is not a draw
+                    return false; 
                 }
             }
         }
-        return !this.checkWin(); // If there's no winner, it's a draw
+        return !this.checkWin(); 
     },
 
 
@@ -194,6 +194,49 @@ const game = {
 
 
 }
+
+
+
+const drawboard = {
+    board: GameBoard,
+
+    buildboard: function() {
+        let tictactoeboard = document.getElementById("tictactoeboard");
+        const gameBoard = this.board.getBoard(); 
+
+        gameBoard.forEach(row => {
+            row.forEach(item => {
+                const div = document.createElement("div");
+                div.classList.add("cell");
+                div.textContent = item; 
+
+                div.addEventListener("click", function() {
+                    console.log(`You clicked on div: ${item}`)
+                })
+
+                tictactoeboard.appendChild(div);
+            });
+        });
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
